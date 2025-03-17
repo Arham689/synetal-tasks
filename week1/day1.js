@@ -36,5 +36,43 @@ arrayFilter(arr)
 // %O → Formats the value as an expandable JavaScript object.
 
 // %c → Applies CSS style rules to the output string as specified by the second parameter.
+const obj1 = {
+    1 : "test",
+    
+}
 
-console.log("%cExtra Large Yellow Text with Red Background", "background: red; color: yellow; font-size: x-large");
+const obj2 = {
+    "hwllo"  : "world",
+    ...obj1
+}
+
+for(let i in obj2){
+    console.log(`key:${i} , value : ${obj2[i]}`)
+}
+        
+let myData =null;
+
+fetch('https://freetestapi.com/api/v1/students')
+.then(response => response.json())
+.then(data => {
+    myData = data;
+
+    // console.log("Inside fetch:", myData);
+})
+.catch(error => {
+    console.error("Error fetching data:", error);
+});
+
+
+console.log(myData)
+
+
+let goodstudents = myData.filter(  s  => s.gpa >= 3.7 )
+// console.log(goodstudents)
+
+let avg = myData.reduce((acc , curr)=>
+        acc + curr.gpa 
+ , 0 )
+
+ console.log(avg)
+
